@@ -503,7 +503,7 @@ vllm serve DeepSeek-R1-Distill-Qwen-32B-Q8_0.gguf --tokenizer tokenizer_base
 
 原因分析：因为在 `tokenizer_config.json` 中，强制在用户输出之后，加入了<think>标签作为输入令模型输出，故模型不会再次输出<think>标签，仅会有</think>，故得到的模型输出无法渲染正确的思维链样式。
 
-官方原文：此外，我们观察到 DeepSeek-R1 系列模型在回应某些查询时，倾向于绕过思考模式（即省略输出“<think>\n\n</think>”），这可能会对模型的性能产生不利影响。为确保模型进行充分的推理，我们建议强制模型在每次输出的开头都以“<think>\n”启动其回应。
+官方说明的译文：此外，我们观察到 DeepSeek-R1 系列模型在回应某些查询时，倾向于绕过思考模式（即省略输出“<think>\n\n</think>”），这可能会对模型的性能产生不利影响。为确保模型进行充分的推理，我们建议强制模型在每次输出的开头都以“<think>\n”启动其回应。
 
 vLLM已给出了专门的解决方法：https://docs.vllm.ai/en/latest/features/reasoning_outputs.html#quickstart
 在启动参数中添加`--enable-reasoning --reasoning-parser deepseek_r1`即可
